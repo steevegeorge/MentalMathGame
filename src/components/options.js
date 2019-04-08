@@ -5,46 +5,52 @@ import PropTypes from "prop-types";
 const Options = props => {
   return (
     <div className="option-container">
-      <Button
-        variant="contained"
-        color="custom"
-        className="option-button"
-        onClick={() => {
-          props.setQuestionType("+");
-        }}
-      >
-        +
-      </Button>
-      <Button
-        variant="contained"
-        color="custom"
-        className="option-button"
-        onClick={() => {
-          props.setQuestionType("-");
-        }}
-      >
-        -
-      </Button>
-      <Button
-        variant="contained"
-        color="custom"
-        className="option-button"
-        onClick={() => {
-          props.setQuestionType("x");
-        }}
-      >
-        x
-      </Button>
-      <Button
-        variant="contained"
-        color="custom"
-        className="option-button"
-        onClick={() => {
-          props.setQuestionType("÷");
-        }}
-      >
-        ÷
-      </Button>
+      <div className="option-button-container">
+        <div className="option-button">
+          <Button
+            variant="contained"
+            color="custom"
+            onClick={() => {
+              props.setQuestionType("+");
+            }}
+          >
+            +
+          </Button>
+        </div>
+        <div className="option-button">
+          <Button
+            variant="contained"
+            color="custom"
+            onClick={() => {
+              props.setQuestionType("-");
+            }}
+          >
+            -
+          </Button>
+        </div>
+        <div className="option-button">
+          <Button
+            variant="contained"
+            color="custom"
+            onClick={() => {
+              props.setQuestionType("x");
+            }}
+          >
+            x
+          </Button>
+        </div>
+        <div className="option-button">
+          <Button
+            variant="contained"
+            color="custom"
+            onClick={() => {
+              props.setQuestionType("÷");
+            }}
+          >
+            ÷
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

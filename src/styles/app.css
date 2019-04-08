@@ -16,6 +16,25 @@ body {
   /* width: 100%; */
 }
 
+.timer {
+  width: 300px;
+  font-size: 40px;
+  font-family: Roboto;
+  margin: auto;
+  text-align: center;
+}
+
+.game-over {
+  text-align: center;
+}
+
+.game-score {
+  font-size: 30px;
+  width: 150px;
+  text-align: center;
+  margin: auto;
+}
+
 .option-container {
   text-align: center;
   position: absolute;
@@ -23,16 +42,20 @@ body {
   width: 100%;
 }
 
+.option-button-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+}
+
 .option-button {
   height: 80px;
   width: 80px;
   font-size: 40px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: auto;
+  margin-left: auto;
   text-align: center;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 40px;
+  float: left;
 }
 
 .practice-area {
@@ -76,7 +99,5 @@ body {
   }
 
   .option-button {
-    height: 60px;
-    width: 60px;
   }
 }
