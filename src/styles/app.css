@@ -44,14 +44,13 @@ h1 {
 
 .option-container {
   text-align: center;
-  position: absolute;
-  bottom: 20px;
   width: 100%;
 }
 
 .option-button-container {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 60px;
   width: 320px;
 }
 
@@ -70,15 +69,13 @@ h1 {
   font-family: Roboto;
   height: 245px;
   width: 100%;
-  position: absolute;
-  top: calc(50% - 122px);
 }
 
 .question-container {
   color: #fff;
-  position: relative;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -86,7 +83,6 @@ h1 {
   clear: both;
   height: 70px;
   width: 300px;
-  position: relative;
   margin: 0 auto;
 }
 
@@ -122,10 +118,5 @@ h1 {
 
   .practice-area {
     font-size: 70px;
-    font-family: Roboto;
-    height: 245px;
-    width: 100%;
-    position: absolute;
-    top: calc(50% - 122px);
   }
 }

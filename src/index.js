@@ -79,7 +79,6 @@ const App = () => {
     <div className="app-container">
       <h1>5 Minutes Mental Math Practice</h1>
       <Timer />
-      <Options setQuestionType={setQuestionType} />
       <Practice
         firstRand={firstRand}
         secondRand={secondRand}
@@ -89,6 +88,7 @@ const App = () => {
         questionAnswer={questionAnswer}
         nextQuestion={nextQuestion}
       />
+      <Options setQuestionType={setQuestionType} />
     </div>
   );
 };
