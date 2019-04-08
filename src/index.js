@@ -4,7 +4,7 @@ import ReactDom from "react-dom";
 import Options from "./components/options";
 import Practice from "./components/practice";
 import Paper from "@material-ui/core/Paper";
-const GAME_TIME = 200;
+const GAME_TIME = 300;
 import "./styles/app.css";
 
 const App = () => {
@@ -65,11 +65,19 @@ const App = () => {
   });
 
   const Timer = () => {
-    return <Paper className="timer">{seconds} seconds left</Paper>;
+    let minutes = Math.floor(seconds / 60);
+    let secondsLeft = seconds - minutes * 60;
+    secondsLeft = _.padStart(secondsLeft, 2, "0");
+    return (
+      <Paper className="timer">
+        Time left {minutes}:{secondsLeft}
+      </Paper>
+    );
   };
 
   return (
     <div className="app-container">
+      <h1>5 Minutes Mental Math Practice</h1>
       <Timer />
       <Options setQuestionType={setQuestionType} />
       <Practice

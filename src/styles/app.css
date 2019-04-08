@@ -12,12 +12,19 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+h1 {
+  font-family: Roboto;
+  text-align: center;
+  color: #fff;
+  font-size: 60px;
+}
+
 .app-container {
   /* width: 100%; */
 }
 
 .timer {
-  width: 300px;
+  width: 350px;
   font-size: 40px;
   font-family: Roboto;
   margin: auto;
@@ -104,10 +111,8 @@ body {
   background-color: #000;
 }
 
-@media only screen and (max-width: 390px) {
-  .option-container {
-  }
-
-  .option-button {
+@media only screen and (max-width: 929px) {
+  h1 {
+    font-size: 35px;
   }
 }
