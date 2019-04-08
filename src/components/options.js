@@ -8,8 +8,8 @@ const Options = ({ setQuestionType }) => {
       <div className="option-button-container">
         <div className="option-button">
           <Button
+            className="button"
             variant="contained"
-            color="custom"
             onClick={() => {
               setQuestionType("+");
             }}
@@ -19,8 +19,8 @@ const Options = ({ setQuestionType }) => {
         </div>
         <div className="option-button">
           <Button
+            className="button"
             variant="contained"
-            color="custom"
             onClick={() => {
               setQuestionType("-");
             }}
@@ -30,8 +30,8 @@ const Options = ({ setQuestionType }) => {
         </div>
         <div className="option-button">
           <Button
+            className="button"
             variant="contained"
-            color="custom"
             onClick={() => {
               setQuestionType("x");
             }}
@@ -41,8 +41,8 @@ const Options = ({ setQuestionType }) => {
         </div>
         <div className="option-button">
           <Button
+            className="button"
             variant="contained"
-            color="custom"
             onClick={() => {
               setQuestionType("÷");
             }}

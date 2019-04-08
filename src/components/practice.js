@@ -42,8 +42,8 @@ const Progress = ({ setShowAnswer, nextQuestion }) => {
       <div className="action-button-container">
         <div className="action-button">
           <Button
+            className="button"
             variant="contained"
-            color="custom"
             onClick={() => {
               setShowAnswer(true);
               setShowNext(true);
