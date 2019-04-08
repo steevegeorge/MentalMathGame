@@ -119,4 +119,13 @@ h1 {
   h1 {
     font-size: 35px;
   }
+
+  .practice-area {
+    font-size: 70px;
+    font-family: Roboto;
+    height: 245px;
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 122px);
+  }
 }
