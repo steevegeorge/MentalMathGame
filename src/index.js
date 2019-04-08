@@ -4,20 +4,20 @@ import ReactDom from "react-dom";
 import Options from "./components/options";
 import Practice from "./components/practice";
 import Paper from "@material-ui/core/Paper";
-const GAME_TIME = 10;
+const GAME_TIME = 200;
 import "./styles/app.css";
 
 const App = () => {
-  const [firstRand, setFirstRand] = useState(_.random(1, 15));
-  const [secondRand, setSecondRand] = useState(_.random(1, 15));
+  const [firstRand, setFirstRand] = useState(_.random(1, 100));
+  const [secondRand, setSecondRand] = useState(_.random(1, 100));
   const [questionOperator, setQuestionOperator] = useState("+");
   const [questionAnswer, setQuestionAnswer] = useState(firstRand + secondRand);
   const [seconds, setSeconds] = useState(GAME_TIME);
   const [score, setScore] = useState(0);
 
   const setValues = operator => {
-    let newFirstRand = _.random(1, 15);
-    let newSecondRand = _.random(1, 15);
+    let newFirstRand = _.random(1, 100);
+    let newSecondRand = _.random(1, 100);
     setFirstRand(newFirstRand);
     setSecondRand(newSecondRand);
     if (operator == "+") {
@@ -25,22 +25,27 @@ const App = () => {
       setQuestionAnswer(newFirstRand + newSecondRand);
     } else if (operator == "-") {
       setQuestionOperator("-");
-      setQuestionAnswer(newFirstRand - newSecondRand);
+      let subAnswer = 0;
+      if (newSecondRand > newFirstRand) {
+        setFirstRand(newSecondRand);
+        setSecondRand(newFirstRand);
+        subAnswer = newSecondRand - newFirstRand;
+      } else {
+        subAnswer = newFirstRand - newSecondRand;
+      }
+      setQuestionAnswer(subAnswer);
     } else if (operator == "÷") {
       setQuestionOperator("÷");
-      setQuestionAnswer(newFirstRand / newSecondRand);
+      setQuestionAnswer((newFirstRand / newSecondRand).toFixed(2));
     } else if (operator == "x") {
       setQuestionOperator("x");
       setQuestionAnswer(newFirstRand * newSecondRand);
     }
   };
 
-  const checkAnswer = answer => {
-    if (answer.target.value == questionAnswer) {
-      setScore(score + 1);
-      setValues(questionOperator);
-      answer.target.value = "";
-    }
+  const nextQuestion = () => {
+    setScore(score + 1);
+    setValues(questionOperator);
   };
 
   const setQuestionType = operator => {
@@ -71,9 +76,10 @@ const App = () => {
         firstRand={firstRand}
         secondRand={secondRand}
         operator={questionOperator}
-        onKeyUp={checkAnswer}
         seconds={seconds}
         score={score}
+        questionAnswer={questionAnswer}
+        nextQuestion={nextQuestion}
       />
     </div>
   );

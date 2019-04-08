@@ -77,13 +77,23 @@ body {
 
 .answer-container {
   clear: both;
-  height: 60px;
+  height: 70px;
   width: 300px;
   position: relative;
   margin: 0 auto;
 }
 
-.input {
+.action-button-container {
+  width: 137px;
+  text-align: center;
+  margin: auto;
+}
+
+.action-button {
+  width: 138px;
+}
+
+.output {
   height: inherit;
   width: inherit;
   font-size: 60px;

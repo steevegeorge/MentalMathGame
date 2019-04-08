@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-const Options = props => {
+const Options = ({ setQuestionType }) => {
   return (
     <div className="option-container">
       <div className="option-button-container">
@@ -11,7 +11,7 @@ const Options = props => {
             variant="contained"
             color="custom"
             onClick={() => {
-              props.setQuestionType("+");
+              setQuestionType("+");
             }}
           >
             +
@@ -22,7 +22,7 @@ const Options = props => {
             variant="contained"
             color="custom"
             onClick={() => {
-              props.setQuestionType("-");
+              setQuestionType("-");
             }}
           >
             -
@@ -33,7 +33,7 @@ const Options = props => {
             variant="contained"
             color="custom"
             onClick={() => {
-              props.setQuestionType("x");
+              setQuestionType("x");
             }}
           >
             x
@@ -44,7 +44,7 @@ const Options = props => {
             variant="contained"
             color="custom"
             onClick={() => {
-              props.setQuestionType("÷");
+              setQuestionType("÷");
             }}
           >
             ÷
