@@ -5,7 +5,26 @@ import Options from "./components/options";
 import Practice from "./components/practice";
 import Paper from "@material-ui/core/Paper";
 const GAME_TIME = 300;
-import "./styles/app.css";
+import styled from "styled-components";
+
+const Header = styled.h1`
+  font-family: Roboto;
+  text-align: center;
+  color: #fff;
+  font-size: 60px;
+
+  @media screen and (max-width: 929px) {
+    font-size: 35px;
+  }
+`;
+
+const timeStyle = {
+  width: "350px",
+  fontSize: "40px",
+  fontFamily: "Roboto",
+  margin: "auto",
+  textAlign: "center"
+};
 
 const App = () => {
   const [firstRand, setFirstRand] = useState(_.random(1, 100));
@@ -44,13 +63,13 @@ const App = () => {
   };
 
   const nextQuestion = () => {
-    setScore(score + 1);
     setValues(questionOperator);
+    setScore(score + 1);
   };
 
   const setQuestionType = operator => {
-    setSeconds(GAME_TIME);
     setScore(0);
+    setSeconds(GAME_TIME);
     setValues(operator);
   };
 
@@ -69,27 +88,27 @@ const App = () => {
     let secondsLeft = seconds - minutes * 60;
     secondsLeft = _.padStart(secondsLeft, 2, "0");
     return (
-      <Paper className="timer">
+      <Paper style={timeStyle}>
         Time left {minutes}:{secondsLeft}
       </Paper>
     );
   };
 
   return (
-    <div className="app-container">
-      <h1>5 Minutes Mental Math Practice</h1>
+    <>
+      <Header>5 Minutes Mental Math Practice</Header>
       <Timer />
       <Practice
         firstRand={firstRand}
         secondRand={secondRand}
         operator={questionOperator}
         seconds={seconds}
-        score={score}
         questionAnswer={questionAnswer}
         nextQuestion={nextQuestion}
+        score={score}
       />
       <Options setQuestionType={setQuestionType} />
-    </div>
+    </>
   );
 };
 

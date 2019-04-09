@@ -1,14 +1,40 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const OptionContainer = styled.div`
+  text-align: center;
+  width: 100%;
+  height: 245px;
+`;
+
+const OptionButtonContainer = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+`;
+
+const OptionsButton = styled.div`
+  width: 80px;
+  font-size: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  float: left;
+`;
+
+const buttonStyle = {
+  backgroundColor: "#fff"
+};
 
 const Options = ({ setQuestionType }) => {
   return (
-    <div className="option-container">
-      <div className="option-button-container">
-        <div className="option-button">
+    <OptionContainer>
+      <OptionButtonContainer>
+        <OptionsButton>
           <Button
-            className="button"
+            style={buttonStyle}
             variant="contained"
             onClick={() => {
               setQuestionType("+");
@@ -16,10 +42,10 @@ const Options = ({ setQuestionType }) => {
           >
             +
           </Button>
-        </div>
-        <div className="option-button">
+        </OptionsButton>
+        <OptionsButton>
           <Button
-            className="button"
+            style={buttonStyle}
             variant="contained"
             onClick={() => {
               setQuestionType("-");
@@ -27,10 +53,10 @@ const Options = ({ setQuestionType }) => {
           >
             -
           </Button>
-        </div>
-        <div className="option-button">
+        </OptionsButton>
+        <OptionsButton>
           <Button
-            className="button"
+            style={buttonStyle}
             variant="contained"
             onClick={() => {
               setQuestionType("x");
@@ -38,10 +64,10 @@ const Options = ({ setQuestionType }) => {
           >
             x
           </Button>
-        </div>
-        <div className="option-button">
+        </OptionsButton>
+        <OptionsButton>
           <Button
-            className="button"
+            style={buttonStyle}
             variant="contained"
             onClick={() => {
               setQuestionType("÷");
@@ -49,9 +75,9 @@ const Options = ({ setQuestionType }) => {
           >
             ÷
           </Button>
-        </div>
-      </div>
-    </div>
+        </OptionsButton>
+      </OptionButtonContainer>
+    </OptionContainer>
   );
 };
 

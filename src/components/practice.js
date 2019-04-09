@@ -1,18 +1,76 @@
 import React, { useState } from "react";
 import Question from "./question";
 import PropTypes from "prop-types";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import styled from "styled-components";
+
+const Output = styled.div`
+  height: inherit;
+  width: inherit;
+  font-size: 60px;
+  text-align: center;
+  color: #fff;
+  border: 4px solid #fff;
+  border-radius: 10px;
+  background-color: #000;
+`;
+
+const ActionButtons = styled.div`
+  width: 137px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const SingleActionButton = styled.div`
+  width: 138px;
+`;
+
+const PracticeArea = styled.div`
+  font-size: 100px;
+  font-family: Roboto;
+  width: 100%;
+
+  @media screen and (max-width: 929px) {
+    font-size: 70px;
+  }
+`;
+
+const QuestionContainer = styled.div`
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-align: center;
+`;
+
+const AnswerContainer = styled.div`
+  clear: both;
+  height: 70px;
+  width: 300px;
+  margin: 0 auto;
+`;
+
+const GameOver = styled.div`
+  text-align: center;
+`;
+
+const Score = styled.div`
+  color: yellow;
+  font-size: 60px;
+  text-align: center;
+  margin-top: 10px;
+`;
+
+const buttonStyle = {
+  backgroundColor: "#fff"
+};
 
 const Answer = ({ answer, showAnswer }) => {
   if (showAnswer) {
-    return (
-      <div className="output" id="answer">
-        {answer}
-      </div>
-    );
+    return <Output>{answer}</Output>;
   } else {
-    return <div className="output" id="answer" />;
+    return <Output />;
   }
 };
 
@@ -21,11 +79,11 @@ const Progress = ({ setShowAnswer, nextQuestion }) => {
 
   if (showNext) {
     return (
-      <div className="action-button-container">
-        <div className="action-button">
+      <ActionButtons>
+        <SingleActionButton>
           <Button
+            style={buttonStyle}
             variant="contained"
-            color="custom"
             onClick={() => {
               setShowAnswer(false);
               setShowNext(false);
@@ -34,15 +92,15 @@ const Progress = ({ setShowAnswer, nextQuestion }) => {
           >
             Next Question
           </Button>
-        </div>
-      </div>
+        </SingleActionButton>
+      </ActionButtons>
     );
   } else {
     return (
-      <div className="action-button-container">
-        <div className="action-button">
+      <ActionButtons>
+        <SingleActionButton>
           <Button
-            className="button"
+            style={buttonStyle}
             variant="contained"
             onClick={() => {
               setShowAnswer(true);
@@ -51,8 +109,8 @@ const Progress = ({ setShowAnswer, nextQuestion }) => {
           >
             Show Answer
           </Button>
-        </div>
-      </div>
+        </SingleActionButton>
+      </ActionButtons>
     );
   }
 };
@@ -62,38 +120,36 @@ const Practice = ({
   firstRand,
   secondRand,
   operator,
-  score,
   questionAnswer,
-  nextQuestion
+  nextQuestion,
+  score
 }) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
   if (seconds > 0) {
     return (
-      <div className="practice-area">
-        <div className="question-container">
-          <div className="question">
-            <Question
-              firstRand={firstRand}
-              secondRand={secondRand}
-              operator={operator}
-            />
-          </div>
-        </div>
+      <PracticeArea>
+        <QuestionContainer>
+          <Question
+            firstRand={firstRand}
+            secondRand={secondRand}
+            operator={operator}
+          />
+        </QuestionContainer>
 
-        <div className="answer-container">
+        <AnswerContainer>
           <Answer answer={questionAnswer} showAnswer={showAnswer} />
-        </div>
+        </AnswerContainer>
+        <Score>{score}</Score>
+
         <Progress setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
-      </div>
+      </PracticeArea>
     );
   } else {
     return (
-      <div className="practice-area">
-        <div className="game-over">Game Over</div>
-
-        <Paper className="game-score">Score: {score}</Paper>
-      </div>
+      <PracticeArea>
+        <GameOver>Game Over</GameOver>
+      </PracticeArea>
     );
   }
 };
