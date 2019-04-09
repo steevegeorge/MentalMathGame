@@ -6,7 +6,6 @@ import styled from "styled-components";
 const OptionContainer = styled.div`
   text-align: center;
   width: 100%;
-  height: 245px;
 `;
 
 const OptionButtonContainer = styled.div`
