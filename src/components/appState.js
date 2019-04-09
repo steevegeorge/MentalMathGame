@@ -10,6 +10,7 @@ const appState = () => {
   const [questionAnswer, setQuestionAnswer] = useState(firstRand + secondRand);
   const [seconds, setSeconds] = useState(GAME_TIME);
   const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   const setValues = operator => {
     let newFirstRand = _.random(1, 100);
@@ -48,6 +49,7 @@ const appState = () => {
     setScore(0);
     setSeconds(GAME_TIME);
     setValues(operator);
+    setGameOver(false);
   };
 
   useEffect(() => {
@@ -57,6 +59,8 @@ const appState = () => {
       }, 1000);
 
       return () => clearTimeout(timer);
+    } else {
+      setGameOver(true);
     }
   });
 
@@ -68,7 +72,8 @@ const appState = () => {
     seconds,
     score,
     nextQuestion,
-    setQuestionType
+    setQuestionType,
+    gameOver
   };
 };
 

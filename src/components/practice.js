@@ -116,23 +116,23 @@ const Progress = ({ setShowAnswer, nextQuestion }) => {
 };
 
 const Practice = ({
-  seconds,
-  firstRand,
-  secondRand,
+  firstNumber,
+  secondNumber,
   operator,
   questionAnswer,
   nextQuestion,
-  score
+  score,
+  gameOver
 }) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
-  if (seconds > 0) {
+  if (!gameOver) {
     return (
       <PracticeArea>
         <QuestionContainer>
           <Question
-            firstRand={firstRand}
-            secondRand={secondRand}
+            firstRand={firstNumber}
+            secondRand={secondNumber}
             operator={operator}
           />
         </QuestionContainer>
@@ -155,9 +155,10 @@ const Practice = ({
 };
 
 Practice.propTypes = {
-  firstRand: PropTypes.number.isRequired,
-  secondRand: PropTypes.number.isRequired,
-  operator: PropTypes.string.isRequired
+  firstNumber: PropTypes.number.isRequired,
+  secondNumber: PropTypes.number.isRequired,
+  operator: PropTypes.string.isRequired,
+  gameOver: PropTypes.bool.isRequired
 };
 
 export default Practice;

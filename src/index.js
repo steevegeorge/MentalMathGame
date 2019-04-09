@@ -26,7 +26,8 @@ const App = () => {
     seconds,
     score,
     nextQuestion,
-    setQuestionType
+    setQuestionType,
+    gameOver
   } = appState();
 
   return (
@@ -34,10 +35,10 @@ const App = () => {
       <Header>5 Minutes Mental Math Practice</Header>
       <Timer seconds={seconds} />
       <Practice
-        firstRand={firstRand}
-        secondRand={secondRand}
+        firstNumber={firstRand}
+        secondNumber={secondRand}
         operator={questionOperator}
-        seconds={seconds}
+        gameOver={gameOver}
         questionAnswer={questionAnswer}
         nextQuestion={nextQuestion}
         score={score}
