@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import _ from "lodash";
 
-const GAME_TIME = 300;
+const GAME_TIME = 120;
 
 const appState = () => {
   const [firstRand, setFirstRand] = useState(_.random(1, 100));
@@ -11,10 +11,31 @@ const appState = () => {
   const [seconds, setSeconds] = useState(GAME_TIME);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [gameOptions] = useState(["+", "-", "×", "÷", "×11", "x²"]);
+  const [gameType, setGameType] = useState("normal");
 
-  const setValues = operator => {
+  const setValues = (operator, passedGameType) => {
     let newFirstRand = _.random(1, 100);
     let newSecondRand = _.random(1, 100);
+    if (passedGameType == "x²") {
+      newSecondRand = newFirstRand;
+      setGameType("x²");
+    } else if (passedGameType == "×11") {
+      newSecondRand = 11;
+      setGameType("×11");
+    } else if (passedGameType == "normal") {
+      setGameType("normal");
+    } else if (gameType == "x²") {
+      newSecondRand = newFirstRand;
+      setGameType("x²");
+    } else if (gameType == "×11") {
+      newSecondRand = 11;
+      setGameType("×11");
+    } else {
+      setGameType("normal");
+    }
+
     setFirstRand(newFirstRand);
     setSecondRand(newSecondRand);
     if (operator == "+") {
@@ -34,8 +55,8 @@ const appState = () => {
     } else if (operator == "÷") {
       setQuestionOperator("÷");
       setQuestionAnswer((newFirstRand / newSecondRand).toFixed(2));
-    } else if (operator == "x") {
-      setQuestionOperator("x");
+    } else if (operator == "×") {
+      setQuestionOperator("×");
       setQuestionAnswer(newFirstRand * newSecondRand);
     }
   };
@@ -45,22 +66,43 @@ const appState = () => {
     setScore(score + 1);
   };
 
-  const setQuestionType = operator => {
-    setScore(0);
+  const setQuestionType = option => {
     setSeconds(GAME_TIME);
-    setValues(operator);
     setGameOver(false);
+
+    if (option == "×11") {
+      setValues("×", "×11");
+      setGameType("×11");
+    } else if (option == "x²") {
+      setValues("×", "x²");
+      setGameType("x²");
+    } else {
+      setValues(option, "normal");
+      setGameType("normal");
+    }
+  };
+
+  const startStopGame = startStop => {
+    if (startStop == "start") {
+      setScore(0);
+      setSeconds(GAME_TIME);
+      setGameStarted(true);
+    } else if (startStop == "stop") {
+      setScore(0);
+      setSeconds(GAME_TIME);
+      setGameStarted(false);
+    }
   };
 
   useEffect(() => {
-    if (seconds > 0) {
+    if (seconds > 0 && gameStarted) {
       const timer = setTimeout(() => {
         setSeconds(seconds - 1);
       }, 1000);
 
       return () => clearTimeout(timer);
     } else {
-      setGameOver(true);
+      setGameStarted(false);
     }
   });
 
@@ -73,7 +115,10 @@ const appState = () => {
     score,
     nextQuestion,
     setQuestionType,
-    gameOver
+    gameOver,
+    gameStarted,
+    startStopGame,
+    gameOptions
   };
 };
 

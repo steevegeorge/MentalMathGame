@@ -74,10 +74,35 @@ const Answer = ({ answer, showAnswer }) => {
   }
 };
 
-const Progress = ({ setShowAnswer, nextQuestion }) => {
+const Progress = ({
+  setShowAnswer,
+  nextQuestion,
+  gameStarted,
+  startStopGame
+}) => {
   const [showNext, setShowNext] = useState(false);
 
-  if (showNext) {
+  if (!gameStarted) {
+    setShowAnswer(false);
+
+    return (
+      <ActionButtons>
+        <SingleActionButton>
+          <Button
+            style={buttonStyle}
+            variant="contained"
+            onClick={() => {
+              setShowNext(false);
+              startStopGame("start");
+              setShowAnswer(false);
+            }}
+          >
+            Start
+          </Button>
+        </SingleActionButton>
+      </ActionButtons>
+    );
+  } else if (showNext) {
     return (
       <ActionButtons>
         <SingleActionButton>
@@ -122,7 +147,9 @@ const Practice = ({
   questionAnswer,
   nextQuestion,
   score,
-  gameOver
+  gameOver,
+  gameStarted,
+  startStopGame
 }) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
@@ -134,6 +161,7 @@ const Practice = ({
             firstRand={firstNumber}
             secondRand={secondNumber}
             operator={operator}
+            gameStarted={gameStarted}
           />
         </QuestionContainer>
 
@@ -142,7 +170,12 @@ const Practice = ({
         </AnswerContainer>
         <Score>{score}</Score>
 
-        <Progress setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
+        <Progress
+          setShowAnswer={setShowAnswer}
+          nextQuestion={nextQuestion}
+          gameStarted={gameStarted}
+          startStopGame={startStopGame}
+        />
       </PracticeArea>
     );
   } else {
@@ -158,7 +191,9 @@ Practice.propTypes = {
   firstNumber: PropTypes.number.isRequired,
   secondNumber: PropTypes.number.isRequired,
   operator: PropTypes.string.isRequired,
-  gameOver: PropTypes.bool.isRequired
+  gameOver: PropTypes.bool.isRequired,
+  gameStarted: PropTypes.bool.isRequired,
+  startStopGame: PropTypes.func.isRequired
 };
 
 export default Practice;

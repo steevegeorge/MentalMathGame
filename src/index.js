@@ -11,6 +11,7 @@ const Header = styled.h1`
   text-align: center;
   color: #fff;
   font-size: 60px;
+  margin-top: 10px;
 
   @media screen and (max-width: 929px) {
     font-size: 35px;
@@ -27,12 +28,15 @@ const App = () => {
     score,
     nextQuestion,
     setQuestionType,
-    gameOver
+    gameOver,
+    gameStarted,
+    startStopGame,
+    gameOptions
   } = appState();
 
   return (
     <>
-      <Header>5 Minutes Mental Math Practice</Header>
+      <Header>2 Minutes Mental Math Practice</Header>
       <Timer seconds={seconds} />
       <Practice
         firstNumber={firstRand}
@@ -42,8 +46,14 @@ const App = () => {
         questionAnswer={questionAnswer}
         nextQuestion={nextQuestion}
         score={score}
+        gameStarted={gameStarted}
+        startStopGame={startStopGame}
       />
-      <Options setQuestionType={setQuestionType} />
+      <Options
+        setQuestionType={setQuestionType}
+        startStopGame={startStopGame}
+        gameOptions={gameOptions}
+      />
     </>
   );
 };
