@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
-import Options from "./components/options";
-import Practice from "./components/practice";
-import Timer from "./components/timer";
+import Options from "./Components/options";
+import Practice from "./Components/practice";
+import Timer from "./Components/timer";
 import styled from "styled-components";
-import appState from "./components/appState";
+import appState from "./Components/appState";
 
 const Header = styled.h1`
   font-family: Roboto;
